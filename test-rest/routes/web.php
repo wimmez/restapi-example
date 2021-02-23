@@ -16,3 +16,8 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->post('/convert', 'UnitConversionController@convert');
+$router->get('/convert', function() {
+    return 'Use POST to convert';
+});
