@@ -55,10 +55,10 @@ class UnitCalculatorHelperTest extends TestCase
         $value2 = DistanceValue::factory()->make(['unit' => DistanceUnit::YARDS, 'value' => 2]);
 
 
-        $expect = DistanceValue::factory()->make(['unit' => DistanceUnit::METERS, 'value' => 4]);
+        $expect = DistanceValue::factory()->make(['unit' => DistanceUnit::METERS, 'value' => 3.83]);
         self::assertEquals($expect, UnitCalculatorHelper::addDistance($value1, $value2, DistanceUnit::METERS));
 
-        $expect = DistanceValue::factory()->make(['unit' => DistanceUnit::YARDS, 'value' => 4]);
+        $expect = DistanceValue::factory()->make(['unit' => DistanceUnit::YARDS, 'value' => 4.19]);
         self::assertEquals($expect, UnitCalculatorHelper::addDistance($value1, $value2, DistanceUnit::YARDS));
     }
 }

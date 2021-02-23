@@ -12,30 +12,24 @@ class UnitCalculatorHelper {
 
     public static function addDistance(DistanceValue $value1, DistanceValue $value2, $unitOut): DistanceValue {
 
-        $value = null;
-        switch ($unitOut) {
-            case DistanceUnit::YARDS:
-                // convert all values to yards and return sum
+        $sum = round(self::convertToUnit($value1, $unitOut) + self::convertToUnit($value2, $unitOut), 2);
 
-
-
-                break;
-
-            case DistanceUnit::METERS:
-                // convert all values to meters and return sum
-                break;
-            default:
-                throw new ValidationException("Unknown distance");
-        }
-
-
-        return DistanceValue::factory()->make(['unit' => $unitOut, 'value' => $value]);
+        return DistanceValue::factory()->make(['unit' => $unitOut, 'value' => $sum]);
     }
 
 
-    private function convertToUnit(DistanceValue $value, $unit): float {
+    private static function convertToUnit(DistanceValue $value, $unit): float {
+
+
         if ($value->unit === $unit) {
             return $value->value;
+        }
+
+        if ($unit === DistanceUnit::METERS) {
+          return $value->value * DistanceUnit::YARD_RATIO;
+        }
+        if ($unit === DistanceUnit::YARDS) {
+          return $value->value / DistanceUnit::YARD_RATIO;
         }
     }
 
