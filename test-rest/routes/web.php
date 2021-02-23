@@ -17,7 +17,7 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->post('/add', 'DistanceCalculatorController@add');
-$router->get('/add', function() {
-    return 'Use POST to add values';
+$router->post('/api/distance/add', 'DistanceCalculatorController@add');
+$router->get('/api/distance/add', function() {
+    return 'Use POST to add values.';
 });

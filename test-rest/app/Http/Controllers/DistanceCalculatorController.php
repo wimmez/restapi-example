@@ -19,17 +19,17 @@ class DistanceCalculatorController extends Controller
     public function add(Request $request): DistanceValue {
 
         $this->validate($request, [
-            'distance' => 'required|float',
-            'unit' => 'string',
+            'distance1' => 'required|Numeric',
+            'unit1' => 'string',
+            'distance2' => 'required|Numeric',
+            'unit2' => 'string',
             'outputUnit' => 'required|string'
         ]);
 
 
         return UnitCalculatorHelper::addDistance(
-            $request->get("distance1"),
-            $request->get("unit1", DistanceUnit::METERS),
-            $request->get("distance2"),
-            $request->get("unit2", DistanceUnit::METERS),
+            DistanceValue::factory()->make(['unit' => $request->get('unit1', DistanceUnit::METERS), 'value' => $request->get('distance1', 0)]),
+            DistanceValue::factory()->make(['unit' => $request->get('unit2', DistanceUnit::METERS), 'value' => $request->get('distance2', 0)]),
             $request->get('outputUnit', DistanceUnit::METERS),
         );
     }
