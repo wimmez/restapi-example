@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Data\DistanceUnit;
 use App\Models\DistanceValue;
-use App\Helpers\UnitConversionHelper;
+use App\Helpers\UnitCalculatorHelper;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
-class DistanceCalculator extends Controller
+class DistanceCalculatorController extends Controller
 {
 
     /**
@@ -25,7 +25,7 @@ class DistanceCalculator extends Controller
         ]);
 
 
-        return UnitConversionHelper::addDistance(
+        return UnitCalculatorHelper::addDistance(
             $request->get("distance1"),
             $request->get("unit1", DistanceUnit::METERS),
             $request->get("distance2"),

@@ -17,7 +17,7 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->post('/convert', 'UnitConversionController@convert');
-$router->get('/convert', function() {
-    return 'Use POST to convert';
+$router->post('/add', 'DistanceCalculatorController@add');
+$router->get('/add', function() {
+    return 'Use POST to add values';
 });
